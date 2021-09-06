@@ -1,22 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  function handleClick() {
+    const url = 'http://localhost:3000/';
+    const data = { fruit: "Apple" };
+    const config = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    };
+    fetch(url, config)
+      .then(response => response.text())
+      .then(result => console.log(result));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={handleClick}>
+          Make a request!
+        </button>
       </header>
     </div>
   );
